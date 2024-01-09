@@ -23,4 +23,4 @@ class PartDrawing(Base):
     drawing_data = Column(LargeBinary, nullable=False)
 
     # Define relationship
-    part = relationship('Part', back_populates='part_drawings')
+    part = relationship('Part', back_populates='part_id')

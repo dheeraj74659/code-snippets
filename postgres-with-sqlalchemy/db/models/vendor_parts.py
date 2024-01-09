@@ -12,15 +12,18 @@
         )
         """
 
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
-class VendorPart():
+Base = declarative_base()
+
+class VendorPart(Base):
     __tablename__ = "vendor_parts"
 
     vendor_id = Column(Integer, ForeignKey('vendors.vendor_id') , primary_key=True)
     part_id = Column(Integer, ForeignKey('parts.part_id') , primary_key=True)
 
     # Define relationships
-    vendor = relationship('Vendor', back_populates='vendor_parts')
-    part = relationship('Part', back_populates='vendor_parts')
+    vendor = relationship('Vendor', back_populates='vendor_id')
+    part = relationship('Part', back_populates='part_id')
